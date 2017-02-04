@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         new BackgroundTask(this).execute(mailIdImportedString);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            getIntent().putExtra("exit",true);
+            this.finish();
         }
     }
 
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -107,7 +111,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.rate) {
 
         }  else if (id == R.id.logout) {
-            System.exit(0);
+            Intent i=new Intent(this,LoginActivity.class);
+            LoginPreferences.setMail(getApplicationContext(),null);
+            startActivity(i);
+            this.finish();
 
         }
         else
@@ -134,6 +141,7 @@ public class MainActivity extends AppCompatActivity
         protected void onPreExecute(){
             jsonGetMedicalHistoryURL = "http://172.16.20.45/jsonGetMedicalHistory.php";
         }
+
 
         @Override
         protected String doInBackground(String... params) {

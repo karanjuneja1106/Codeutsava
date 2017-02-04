@@ -27,11 +27,19 @@ import java.net.URLEncoder;
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText mailId, password;
     String mailIdString = "", passwordString = "";
-    boolean isDataValid = false;
+    boolean isDataValid = false,Q=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
+        if(LoginPreferences.getStoredMail(getApplicationContext())!=null){
+            Intent i=new Intent(this,MainActivity.class);
+            i.putExtra("mailID",LoginPreferences.getStoredMail(getApplicationContext()));
+            //i.putExtra("name",LoginPreferences.getStoredName(this));
+            startActivity(i);
+            this.finish();
+        }
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         TextView register = (TextView)findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
             passwordString = password.getText().toString();
             BackgroundTask backgroundTask = new BackgroundTask(this);
             backgroundTask.execute(mailIdString, passwordString);
+            //if(Q){
+            //    this.finish();
+            //}
         }
     }
 
@@ -163,11 +174,15 @@ public class LoginActivity extends AppCompatActivity {
             {
                 Intent intent = new Intent(context,MainActivity.class);
                 intent.putExtra("mailID", mailIdString);
-                intent.putExtra("name",result);
+                //intent.putExtra("name",result);
+                LoginPreferences.setMail(getApplicationContext(),mailIdString);
+
                 mailId.setText("");
                 password.setText("");
                 mailId.requestFocus();
                 startActivity(intent);
+                if(intent.getBooleanExtra("exit",false))
+                    Q=true;
             }
         }
     }
