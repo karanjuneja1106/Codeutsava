@@ -100,9 +100,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.up) {
-            // Handle the camera action
-        } else if (id == R.id.appoint) {
 
+        } else if (id == R.id.appoint) {
+            Intent i =new Intent(this,BookAppointmentActivity.class);
+            startActivity(i);
         } else if (id == R.id.rate) {
 
         }  else if (id == R.id.logout) {
