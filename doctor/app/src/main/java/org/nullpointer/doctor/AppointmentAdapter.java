@@ -46,7 +46,9 @@ public class AppointmentAdapter extends ArrayAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.layout_appointment,parent,false);
             appointmentHolder = new AppointmentHolder();
+            appointmentHolder.showName = (TextView) row.findViewById(R.id.name);
             appointmentHolder.showMailId = (TextView) row.findViewById(R.id.mail_id);
+            appointmentHolder.showContact = (TextView) row.findViewById(R.id.contact);
             row.setTag(appointmentHolder);
 
 
@@ -58,12 +60,14 @@ public class AppointmentAdapter extends ArrayAdapter {
 
         Appointment appointment = (Appointment) getItem(position);
         appointmentHolder.showMailId.setText(appointment.getMail_id());
+        appointmentHolder.showName.setText(appointment.getName());
+        appointmentHolder.showContact.setText(appointment.getContact());
 
         return row;
     }
 
     static class AppointmentHolder
     {
-        TextView showMailId;
+        TextView showMailId, showName, showContact;
     }
 }
