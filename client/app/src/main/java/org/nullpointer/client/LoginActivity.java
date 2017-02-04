@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            loginAsPatientURL = "http://172.16.20.101/codeutsava/login_as_client.php";
+            loginAsPatientURL = "http://172.16.20.45/login_as_client.php";
         }
 
         @Override
@@ -152,10 +152,10 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
 
-            Boolean loginCheck = result.equals("Invalid Mail or Password");
-            if(loginCheck)
+            Boolean loginCheck = result.equals("Login Sucessful");
+            if(!loginCheck)
             {
-                org.nullpointer.client.Message.message(context,result);
+                org.nullpointer.client.Message.message(context,"INVALID LOGIN CREDENTIALS");
                 mailId.setText("");
                 password.setText("");
             }
