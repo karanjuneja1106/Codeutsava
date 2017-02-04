@@ -5,7 +5,15 @@ package org.nullpointer.client;
  */
 
 public class Client {
-    private String mName, mMailID, mContact, mWeeks, mCity, mState;
+    private String mName, mMailID, mContact, mWeeks, mCity, mState,mPassword;
+
+    public String getPassword() {
+        return mPassword;
+    }
+
+    public void setPassword(String password) {
+        mPassword = password;
+    }
 
     public String getName() {
         return mName;
