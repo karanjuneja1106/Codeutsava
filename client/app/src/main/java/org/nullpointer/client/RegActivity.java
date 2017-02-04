@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 
 public class RegActivity extends AppCompatActivity {
     TextInputEditText name,email,password,contact,week,city,state;
-    boolean isDataValid = false;
+    boolean isDataValid = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class RegActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            registerAsPatientURL = "http://http://172.16.20.45/new_registeration.php";
+            registerAsPatientURL = "http://172.16.20.45/new_registeration.php";
         }
 
         @Override
@@ -92,8 +92,8 @@ public class RegActivity extends AppCompatActivity {
                 data = URLEncoder.encode("CLIENT_NAME", "UTF-8") +"="+URLEncoder.encode(CLIENT_NAME,"UTF-8")+"&"+
                         URLEncoder.encode("CLIENT_MAIL_ID","UTF-8") +"="+URLEncoder.encode(CLIENT_MAIL_ID,"UTF-8")+"&"+
                         URLEncoder.encode("CLIENT_PASSWORD", "UTF-8") +"="+URLEncoder.encode(CLIENT_PASSWORD,"UTF-8")+"&"+
-                        URLEncoder.encode("CLIENT_CONTACT","UTF-8") +"="+URLEncoder.encode(CLIENT_CONTACT,"UTF-8")+"&"+
                         URLEncoder.encode("CLIENT_WEEKS", "UTF-8") +"="+URLEncoder.encode(CLIENT_WEEKS,"UTF-8")+"&"+
+                        URLEncoder.encode("CLIENT_CONTACT","UTF-8") +"="+URLEncoder.encode(CLIENT_CONTACT,"UTF-8")+"&"+
                         URLEncoder.encode("CLIENT_CITY","UTF-8") +"="+URLEncoder.encode(CLIENT_CITY,"UTF-8")+"&"+
                         URLEncoder.encode("CLIENT_STATE", "UTF-8") +"="+URLEncoder.encode(CLIENT_STATE,"UTF-8");
 
