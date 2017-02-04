@@ -3,36 +3,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/up"
             android:icon="@drawable/ic_menu_camera"
             android:title="Upcoming Events" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/appoint"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Book an appointment" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/history"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Medical History" />
+        <item
+            android:id="@+id/rate"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Rate hospital" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Rate hospital" />
-    </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
+                android:id="@+id/logout"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Logout" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Exit" />
-        </menu>else if (id == R.id.nav_manage) {
-
-        }
-    </item>
-
+    </group>
 </menu>

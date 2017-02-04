@@ -166,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("name",result);
                 mailId.setText("");
                 password.setText("");
+                mailId.requestFocus();
                 startActivity(intent);
             }
         }
