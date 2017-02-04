@@ -2,6 +2,8 @@ package org.nullpointer.doctor;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -48,5 +50,16 @@ public class AppointmentScreen extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Message message = new Message();
+                message.message(getApplicationContext(),"Hello");
+
+            }
+        });
+
     }
 }
