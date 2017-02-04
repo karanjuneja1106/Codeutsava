@@ -115,7 +115,13 @@ public class MainActivity extends AppCompatActivity
             LoginPreferences.setMail(getApplicationContext(),null);
             startActivity(i);
             this.finish();
+         // Handle the camera action
+        } else if (id == R.id.appoint) {
 
+        } else if (id == R.id.rate) {
+
+        }  else if (id == R.id.logout) {
+            System.exit(0);
         }
         else
         {
