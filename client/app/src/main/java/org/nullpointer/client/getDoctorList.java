@@ -84,14 +84,15 @@ public class getDoctorList {
             try{
                 JSONObject jsonObject = new JSONObject(JSON_STRING);
                 JSONArray jsonArray = jsonObject.getJSONArray("doctors_From_Server");
-                String name,contact;
+                String name,contact,doc_id;
                 int count = 0;
                 while(count<jsonArray.length()){
                     JSONObject JO = jsonArray.getJSONObject(count);
                     count++;
                     name = JO.getString("Name");
                     contact = JO.getString("Contact");
-                    Doctor doc = new Doctor(name,contact);
+                    doc_id = JO.getString("User_id");
+                    Doctor doc = new Doctor(name,contact,doc_id);
                     docList.add(doc);
                 }
             }

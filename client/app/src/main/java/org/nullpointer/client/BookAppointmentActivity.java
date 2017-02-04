@@ -27,10 +27,12 @@ public class BookAppointmentActivity extends AppCompatActivity {
     private	class	Holder	extends	RecyclerView.ViewHolder	implements View.OnClickListener{
         private TextView mNameTextView;
         private TextView mContactTextView;
+        private TextView mUserID;
         public	Holder(View itemView)	{
             super(itemView);
             mNameTextView = (TextView) itemView.findViewById(R.id.name);
             mContactTextView = (TextView) itemView.findViewById(R.id.contact);
+            mUserID = (TextView)itemView.findViewById(R.id.uid);
             itemView.setOnClickListener(this);
         }
         @Override
@@ -38,6 +40,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(),CnfAppointmentActivity.class);
             i.putExtra("NAME",mNameTextView.getText());
             i.putExtra("CONTACT",mContactTextView.getText());
+            i.putExtra("UID",mUserID.getText());
             startActivity(i);
         }
     }
@@ -58,6 +61,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
             Doctor doc	=	mDocs.get(position);
             holder.mNameTextView.setText(doc.getName());
             holder.mContactTextView.setText(doc.getContact());
+            holder.mUserID.setText(doc.getDocID());
         }
         @Override
         public	int	getItemCount()	{

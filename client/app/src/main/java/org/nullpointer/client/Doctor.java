@@ -5,11 +5,20 @@ package org.nullpointer.client;
  */
 
 public class Doctor {
-    private String mName,mContact;
+    private String mName,mContact,mDocID;
 
-    public Doctor(String name, String contact) {
+    public Doctor(String name, String contact,String DocID) {
         mName = name;
         mContact = contact;
+        mDocID = DocID;
+    }
+
+    public String getDocID() {
+        return mDocID;
+    }
+
+    public void setDocID(String docID) {
+        mDocID = docID;
     }
 
     public String getName() {
