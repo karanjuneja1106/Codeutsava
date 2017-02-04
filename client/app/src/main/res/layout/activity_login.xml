@@ -24,7 +24,7 @@
                 android:id="@+id/adm_no_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-Mail"
+                android:hint="Admission No."
                 android:inputType="textCapCharacters" />
         </android.support.design.widget.TextInputLayout>
 
