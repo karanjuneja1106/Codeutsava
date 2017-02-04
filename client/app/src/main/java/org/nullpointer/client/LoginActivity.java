@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public class BackgroundTask extends AsyncTask<String,Void,String> {
-        String loginAsPatientURL;
+        String loginAsClientURL;
         Context context;
 
         BackgroundTask(Context context){
@@ -98,16 +98,16 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            loginAsPatientURL = "http://172.16.20.45/login_as_client.php";
+            loginAsClientURL = "http://172.16.20.45/login_as_client.php";
         }
 
         @Override
         protected String doInBackground(String... params) {
-            String PATIENT_ADM_NO=params[0];
-            String PATIENT_PASSWORD=params[1];
+            String CLIENT_MAIL_ID=params[0];
+            String CLIENT_PASSWORD=params[1];
 
             try {
-                URL url = new URL(loginAsPatientURL);
+                URL url = new URL(loginAsClientURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
@@ -115,8 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                String data = URLEncoder.encode("CLIENT_MAIL_ID", "UTF-8") +"="+URLEncoder.encode(PATIENT_ADM_NO,"UTF-8")+"&"+
-                        URLEncoder.encode("CLIENT_PASSWORD", "UTF-8") +"="+URLEncoder.encode(PATIENT_PASSWORD,"UTF-8");
+                String data = URLEncoder.encode("CLIENT_MAIL_ID", "UTF-8") +"="+URLEncoder.encode(CLIENT_MAIL_ID,"UTF-8")+"&"+
+                        URLEncoder.encode("CLIENT_PASSWORD", "UTF-8") +"="+URLEncoder.encode(CLIENT_PASSWORD,"UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
