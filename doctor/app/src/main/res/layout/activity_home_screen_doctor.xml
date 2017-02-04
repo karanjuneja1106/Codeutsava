@@ -23,6 +23,20 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
 
+    <TextView
+        android:id="@+id/appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="appointment"
+        android:text="Check Appointment"
+        android:padding="7dp"
+        android:textAlignment="center"
+        android:textColor="#303f9f"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
