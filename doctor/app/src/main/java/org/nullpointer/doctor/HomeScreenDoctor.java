@@ -28,6 +28,7 @@ public class HomeScreenDoctor extends AppCompatActivity {
     String userIdImportedString = "", mail_id_client_String = "",doctorNameImportedString = "";
     TextInputEditText mail_id_client;
     TextView welcomeDoc;
+    get_Appointment get_appointment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,16 @@ public class HomeScreenDoctor extends AppCompatActivity {
         mail_id_client = (TextInputEditText) findViewById(R.id.mail_id_home_screen_doctor);
         welcomeDoc = (TextView) findViewById(R.id.welocome_doc);
         welcomeDoc.setText("Welcome,    Mr. " + doctorNameImportedString);
+        get_appointment = new get_Appointment(this, userIdImportedString);
     }
 
     public void logout(View view){
         Intent intent = new Intent(this,loginAsDoctor.class);
         startActivity(intent);
+    }
+
+    public void appointment(View view){
+        get_appointment.goToAppointmentScreen();
     }
 
     public void checkIfMailIdExist(View view){
