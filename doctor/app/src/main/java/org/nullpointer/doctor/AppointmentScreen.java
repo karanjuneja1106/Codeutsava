@@ -2,6 +2,8 @@ package org.nullpointer.doctor;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -31,23 +33,33 @@ public class AppointmentScreen extends AppCompatActivity {
             jsonObject = new JSONObject(JSON_STRING);
             jsonArray = jsonObject.getJSONArray("Appointment_From_Server");
             int count = 0;
-            String mail_id;
+            String name, mail_id, contact;
 
             while(count<jsonArray.length()){
                 JSONObject JO = jsonArray.getJSONObject(count);
+                name = JO.getString("NAME");
                 mail_id = JO.getString("MAIL_ID");
+                contact = JO.getString("CONTACT");
 
-                Appointment appointment = new Appointment(mail_id);
+                Appointment appointment = new Appointment(name, mail_id, contact);
                 appointmentAdapter.add(appointment);
                 count++;
 
             }
 
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Message message = new Message();
+                message.message(getApplicationContext(),"Hello");
+
+            }
+        });
+
     }
 }
