@@ -25,6 +25,8 @@
         <activity android:name=".ClientMedicalHistory"/>
         <activity android:name=".BookAppointmentActivity">
         </activity>
+        <activity android:name=".CnfAppointmentActivity">
+        </activity>
     </application>
 
 </manifest>

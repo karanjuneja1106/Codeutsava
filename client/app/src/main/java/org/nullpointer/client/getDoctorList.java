@@ -27,10 +27,12 @@ import java.util.List;
 
 public class getDoctorList {
     private String JSON_STRING="";
-    private ArrayList<Doctor> docList;
+    private static ArrayList<Doctor> docList;
     public getDoctorList() {
-        docList=new ArrayList<Doctor>();
-        new BackgroundTask().execute();
+        if(docList==null) {
+            docList = new ArrayList<Doctor>();
+            new BackgroundTask().execute();
+        }
     }
     public class BackgroundTask extends AsyncTask<Void,Void,String> {
         String jsonGetDoctorsURL="";

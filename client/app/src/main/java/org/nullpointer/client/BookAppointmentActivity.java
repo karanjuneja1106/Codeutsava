@@ -1,5 +1,6 @@
 package org.nullpointer.client;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,13 +24,21 @@ public class BookAppointmentActivity extends AppCompatActivity {
         mDocRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         updateUI();
     }
-    private	class	Holder	extends	RecyclerView.ViewHolder	{
+    private	class	Holder	extends	RecyclerView.ViewHolder	implements View.OnClickListener{
         private TextView mNameTextView;
         private TextView mContactTextView;
         public	Holder(View itemView)	{
             super(itemView);
             mNameTextView = (TextView) itemView.findViewById(R.id.name);
             mContactTextView = (TextView) itemView.findViewById(R.id.contact);
+            itemView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v){
+            Intent i = new Intent(getApplicationContext(),CnfAppointmentActivity.class);
+            i.putExtra("NAME",mNameTextView.getText());
+            i.putExtra("CONTACT",mContactTextView.getText());
+            startActivity(i);
         }
     }
     private	class Adapter extends RecyclerView.Adapter<Holder>	{
