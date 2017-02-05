@@ -23,7 +23,11 @@ public class SetAppointmentTime extends AppCompatActivity {
     TimePicker timePicker;
     Bundle detailsImported;
     String Name, Mail_Id, Contact, Date;
-
+    @Override
+    public void onBackPressed(){
+        setResult(RESULT_CANCELED);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +115,8 @@ public class SetAppointmentTime extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            Message.message(getApplicationContext(),result);
+            setResult(RESULT_CANCELED);
+            finish();
         }
     }
 }

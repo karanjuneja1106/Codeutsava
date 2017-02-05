@@ -18,7 +18,7 @@ public class AppointmentScreen extends AppCompatActivity {
     JSONArray jsonArray;
     AppointmentAdapter appointmentAdapter;
     ListView listView;
-
+    private final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +63,17 @@ public class AppointmentScreen extends AppCompatActivity {
                 intent.putExtra("Mail_Id", entry.getMail_id());
                 intent.putExtra("Contact", entry.getContact());
                 intent.putExtra("Date",entry.getDate());
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE);
 
             }
         });
 
+    }
+    @Override
+    protected void onActivityResult(int request,int result,Intent data){
+        if(request==REQUEST_CODE){
+            if(result==RESULT_CANCELED)
+                finish();
+        }
     }
 }
