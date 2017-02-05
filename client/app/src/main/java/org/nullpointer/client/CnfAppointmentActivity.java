@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.util.Date;
 
 public class CnfAppointmentActivity extends AppCompatActivity {
@@ -32,15 +33,18 @@ public class CnfAppointmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cnf_appointment);
         DatePicker date_picker = (DatePicker) findViewById(R.id.date_picker);
         date_picker.setMinDate(System.currentTimeMillis() - 1000);
-        int month=date_picker.getMonth();
-        int year=date_picker.getYear();
-        int dayOfMonth=date_picker.getDayOfMonth();
-        final String fd=String.format("%02d",dayOfMonth)+"/"+String.format("%02d",month+1)+"/"+year;
+
+
         book=(Button) findViewById(R.id.book_appointment);
         final String uid=getIntent().getExtras().getString("UID");
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DatePicker date_picker = (DatePicker) findViewById(R.id.date_picker);
+                int month=date_picker.getMonth();
+                int year=date_picker.getYear();
+                int dayOfMonth=date_picker.getDayOfMonth();
+                final String fd= dayOfMonth+"/"+(month+1)+"/"+year;
                new BackgroundTask(getApplicationContext()).execute(uid,fd);
 
             }

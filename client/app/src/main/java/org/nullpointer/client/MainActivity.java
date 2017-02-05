@@ -177,6 +177,8 @@ public class MainActivity extends AppCompatActivity
         reset();
     }
     void reset(){
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(0).setChecked(true);
     }
