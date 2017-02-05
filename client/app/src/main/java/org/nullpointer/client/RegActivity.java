@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -38,10 +39,77 @@ public class RegActivity extends AppCompatActivity {
         city = (TextInputEditText) findViewById(R.id.city);
         state = (TextInputEditText) findViewById(R.id.state);
     }
+    private boolean validateDetails() {
+
+        boolean validateData = true;
+        // Reset errors.
+        name.setError(null);
+        email.setError(null);
+        password.setError(null);
+        contact.setError(null);
+        week.setError(null);
+        city.setError(null);
+        state.setError(null);
+
+
+
+
+        // Store values at the time of the login attempt.
+        String nameString=name.getText().toString();
+        String emailIdString = email.getText().toString();
+        String passwordString = password.getText().toString();
+        String contactString = contact.getText().toString();
+        String weekString=week.getText().toString();
+        String cityString = city.getText().toString();
+        String stateString = state.getText().toString();
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(passwordString)) {
+            password.setError("This field is required");
+            validateData = false;
+            focusView = password;
+        }        // Check for a valid Admission no, if the user entered one.
+        if (TextUtils.isEmpty(emailIdString)) {
+            email.setError("This field is required");
+            validateData = false;
+            focusView = email;
+        }
+        if (TextUtils.isEmpty(nameString)) {
+            name.setError("This field is required");
+            validateData = false;
+            focusView = name;
+        }
+        if (TextUtils.isEmpty(contactString)) {
+            contact.setError("This field is required");
+            validateData = false;
+            focusView = contact;
+        }
+        if (TextUtils.isEmpty(weekString)) {
+            week.setError("This field is required");
+            validateData = false;
+            focusView = week;
+        }
+        if (TextUtils.isEmpty(cityString)) {
+            city.setError("This field is required");
+            validateData = false;
+            focusView =city;
+        }
+        if (TextUtils.isEmpty(stateString)) {
+            state.setError("This field is required");
+            validateData = false;
+            focusView = state;
+        }
+        if (validateData==false) {
+            focusView.requestFocus();
+        }
+
+        return validateData;
+    }
 
     public void registerAsPatient(View view){
 
-        //isDataValid = validateDetails();
+        isDataValid = validateDetails();
         if (isDataValid == true) {
             String nameString = name.getText().toString();
             String emailString = email.getText().toString();
