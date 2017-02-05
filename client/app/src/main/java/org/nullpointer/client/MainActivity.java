@@ -4,18 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,12 +30,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Bundle detailsImported;
     String mailIdImportedString = "",nameImportedString = "",JSON_STRING = "";
+    private RecyclerView mRecyclerView;
+    private Adapter mAdapter;
 
 
     @Override
@@ -56,6 +62,71 @@ public class MainActivity extends AppCompatActivity
         nameImportedString=detailsImported.getString("name");
         getJSON();
 
+        mRecyclerView = (RecyclerView)findViewById(R.id.event_list);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        updateUI();
+
+    }
+    private	class	Holder	extends	RecyclerView.ViewHolder{
+        private TextView mNameTextView;
+        private TextView mTimeTextView;
+        public	Holder(View itemView)	{
+            super(itemView);
+            mNameTextView = (TextView) itemView.findViewById(R.id.name);
+            mTimeTextView = (TextView) itemView.findViewById(R.id.time);
+        }
+    }
+    private	class Adapter extends RecyclerView.Adapter<Holder>	{
+        private List<Event> mEvents;
+        public	Adapter(List<Event> events)
+        {
+            mEvents = events;
+        }
+        @Override
+        public	Holder	onCreateViewHolder(ViewGroup parent, int	viewType)	{
+            LayoutInflater layoutInflater	=	LayoutInflater.from(getApplicationContext());
+            View view = layoutInflater.inflate(R.layout.list_item, parent, false);
+            return	new	Holder(view);
+        }
+        @Override
+        public	void	onBindViewHolder(Holder holder, int position)	{
+            Event eve	=	mEvents.get(position);
+            holder.mNameTextView.setText(eve.getName());
+            holder.mTimeTextView.setText(eve.getTime());
+        }
+        @Override
+        public	int	getItemCount()	{
+            return	mEvents.size();
+        }
+    }
+    private	void	updateUI()	{
+        List<Event> events=new GetEvents(getApplicationContext()).getEveList();
+        mAdapter = new Adapter(events);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+    public class Event{
+        String mName,mTime;
+
+        public Event(String name, String time) {
+            mName = name;
+            mTime = time;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public void setName(String name) {
+            mName = name;
+        }
+
+        public String getTime() {
+            return mTime;
+        }
+
+        public void setTime(String time) {
+            mTime = time;
+        }
     }
     void getJSON(){
         new BackgroundTask(this).execute(mailIdImportedString);
@@ -95,8 +166,15 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        reset();
+    }
+    void reset(){
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true);
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -108,20 +186,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.appoint) {
             Intent i =new Intent(this,BookAppointmentActivity.class);
             startActivity(i);
-        } else if (id == R.id.rate) {
-
-        }  else if (id == R.id.logout) {
+        } else if (id == R.id.logout) {
             Intent i=new Intent(this,LoginActivity.class);
             LoginPreferences.setMail(getApplicationContext(),null);
             startActivity(i);
             this.finish();
          // Handle the camera action
-        } else if (id == R.id.appoint) {
-
-        } else if (id == R.id.rate) {
-
-        }  else if (id == R.id.logout) {
-            System.exit(0);
         }
         else
         {
@@ -129,7 +199,6 @@ public class MainActivity extends AppCompatActivity
             i.putExtra("JSON_STRING",JSON_STRING);
             startActivity(i);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

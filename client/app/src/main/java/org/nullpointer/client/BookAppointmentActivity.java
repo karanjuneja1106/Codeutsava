@@ -16,6 +16,7 @@ import java.util.List;
 public class BookAppointmentActivity extends AppCompatActivity {
     private RecyclerView mDocRecyclerView;
     private Adapter mAdapter;
+    private static final int REQUEST_CODE = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
             i.putExtra("NAME",mNameTextView.getText());
             i.putExtra("CONTACT",mContactTextView.getText());
             i.putExtra("UID",mUserID.getText());
-            startActivity(i);
+            startActivityForResult(i,REQUEST_CODE);
         }
     }
     private	class Adapter extends RecyclerView.Adapter<Holder>	{
@@ -72,5 +73,14 @@ public class BookAppointmentActivity extends AppCompatActivity {
         List<Doctor> docs=new getDoctorList().getDocList();
         mAdapter = new Adapter(docs);
         mDocRecyclerView.setAdapter(mAdapter);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
     }
 }

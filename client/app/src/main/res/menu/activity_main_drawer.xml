@@ -15,10 +15,6 @@
             android:icon="@drawable/med"
             android:title="Medical History" />
         <item
-            android:id="@+id/rate"
-            android:icon="@drawable/rate"
-            android:title="Rate hospital" />
-        <item
                 android:id="@+id/logout"
                 android:icon="@drawable/logout"
                 android:title="Logout"

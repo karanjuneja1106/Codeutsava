@@ -113,9 +113,12 @@ public class CnfAppointmentActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
             if(result.equals("New record created successfully")){
+                setResult(RESULT_OK);
                 Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+                finish();
             }
             else{
+                setResult(RESULT_CANCELED);
                 Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
             }
 
