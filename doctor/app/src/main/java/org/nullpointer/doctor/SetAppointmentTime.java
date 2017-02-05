@@ -41,7 +41,6 @@ public class SetAppointmentTime extends AppCompatActivity {
 
     public void setTime(View v){
         String appointmentTime=""+timePicker.getHour()+" : "+timePicker.getMinute();
-        Message.message(getApplicationContext(),appointmentTime);
 
         BackgroundTask backgroundTask = new BackgroundTask(this);
         backgroundTask.execute(Name, Contact, appointmentTime);
@@ -57,7 +56,7 @@ public class SetAppointmentTime extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            sendSMSURL = "http://172.16.20.45/senSMS.php";
+            sendSMSURL = "http://172.16.20.45/sendSMS.php";
         }
 
         @Override
