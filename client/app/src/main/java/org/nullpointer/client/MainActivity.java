@@ -1,10 +1,14 @@
 package org.nullpointer.client;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         mRecyclerView = (RecyclerView)findViewById(R.id.event_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setTitle("Appointments");
         updateUI();
 
     }
@@ -192,6 +197,23 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
             this.finish();
          // Handle the camera action
+        }
+        else if (id==R.id.emergency_in){
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:108"));
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return true;
+            }
+            startActivity(intent);
+
         }
         else
         {
