@@ -1,13 +1,18 @@
 package org.nullpointer.client;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Message;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -26,31 +31,54 @@ import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText mailId, password;
+    TextView emergency_bt;
     String mailIdString = "", passwordString = "";
-    boolean isDataValid = false,Q=false;
+    boolean isDataValid = false, Q = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        if(LoginPreferences.getStoredMail(getApplicationContext())!=null){
-            Intent i=new Intent(this,MainActivity.class);
-            i.putExtra("mailID",LoginPreferences.getStoredMail(getApplicationContext()));
+        if (LoginPreferences.getStoredMail(getApplicationContext()) != null) {
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("mailID", LoginPreferences.getStoredMail(getApplicationContext()));
             //i.putExtra("name",LoginPreferences.getStoredName(this));
             startActivity(i);
             this.finish();
         }
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        TextView register = (TextView)findViewById(R.id.register);
+        TextView register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),RegActivity.class);
+                Intent i = new Intent(getApplicationContext(), RegActivity.class);
                 startActivity(i);
             }
         });
         mailId = (TextInputEditText) findViewById(R.id.mail_id_login);
         password = (TextInputEditText) findViewById(R.id.password_login);
+        emergency_bt = (TextView) findViewById(R.id.emergency_call);
+        emergency_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Log.i("fda","sdasda");
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:108"));
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
     }
     private boolean validateDetails() {
 
