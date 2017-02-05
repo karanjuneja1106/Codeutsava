@@ -1,5 +1,6 @@
 package org.nullpointer.doctor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -55,8 +56,12 @@ public class AppointmentScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Message message = new Message();
-                message.message(getApplicationContext(),"Hello");
+                Appointment entry = (Appointment) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), SetAppointmentTime.class);
+                intent.putExtra("Name", entry.getName());
+                intent.putExtra("Mail_Id", entry.getMail_id());
+                intent.putExtra("Contact", entry.getContact());
+                startActivity(intent);
 
             }
         });
