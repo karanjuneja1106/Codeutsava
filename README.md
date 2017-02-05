@@ -41,8 +41,8 @@
 ---
 # HOW TO USE
 1. Both the apps use the same database as both are built for specific purpose.
-2. Medi is meant to be used for the patient.
-3. Medi Care is used for the doctor.
+2. meant to be used for the patient.
+3. used for the doctor.
 4. In Client app the new patient can register,and if he/she is already a member they can login to view their medical history.
 5. patient can also book an appointment to a doctor.
 6. In Doctor app the doctor can login and enter the patient admission number.
