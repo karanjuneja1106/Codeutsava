@@ -35,7 +35,7 @@ public class get_Appointment {
     public void goToAppointmentScreen() {
 
         if(JSON_STRING==null){
-            Message.message(context, "Appointment not loaded successfully... ");
+            Message.message(context, "Appointment not loaded... ");
         }
         else if (JSON_STRING == "") {
             Message.message(context, "No Appointment Available");

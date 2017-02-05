@@ -5,12 +5,13 @@ package org.nullpointer.doctor;
  */
 
 public class Appointment {
-    private String mail_id, name, contact;
+    private String mail_id, name, contact, date;
 
-    public Appointment(String name, String mail, String contact) {
+    public Appointment(String name, String mail, String contact, String date) {
         this.setName(name);
         this.setMail_id(mail);
         this.setContact(contact);
+        this.setDate(date);
     }
 
     public String getMail_id() {
@@ -35,5 +36,13 @@ public class Appointment {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -49,6 +49,7 @@ public class AppointmentAdapter extends ArrayAdapter {
             appointmentHolder.showName = (TextView) row.findViewById(R.id.name);
             appointmentHolder.showMailId = (TextView) row.findViewById(R.id.mail_id);
             appointmentHolder.showContact = (TextView) row.findViewById(R.id.contact);
+            appointmentHolder.showDate = (TextView) row.findViewById(R.id.date);
             row.setTag(appointmentHolder);
 
 
@@ -62,12 +63,13 @@ public class AppointmentAdapter extends ArrayAdapter {
         appointmentHolder.showMailId.setText(appointment.getMail_id());
         appointmentHolder.showName.setText(appointment.getName());
         appointmentHolder.showContact.setText(appointment.getContact());
+        appointmentHolder.showDate.setText(appointment.getDate());
 
         return row;
     }
 
     static class AppointmentHolder
     {
-        TextView showMailId, showName, showContact;
+        TextView showMailId, showName, showContact, showDate;
     }
 }

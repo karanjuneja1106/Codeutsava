@@ -73,6 +73,27 @@
                 android:textSize="15sp"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preferred Date : "
+                android:textColor="#303f9f"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

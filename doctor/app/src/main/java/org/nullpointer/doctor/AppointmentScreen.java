@@ -34,15 +34,16 @@ public class AppointmentScreen extends AppCompatActivity {
             jsonObject = new JSONObject(JSON_STRING);
             jsonArray = jsonObject.getJSONArray("Appointment_From_Server");
             int count = 0;
-            String name, mail_id, contact;
+            String name, mail_id, contact, date;
 
             while(count<jsonArray.length()){
                 JSONObject JO = jsonArray.getJSONObject(count);
                 name = JO.getString("NAME");
                 mail_id = JO.getString("MAIL_ID");
                 contact = JO.getString("CONTACT");
+                date = JO.getString("DATE");
 
-                Appointment appointment = new Appointment(name, mail_id, contact);
+                Appointment appointment = new Appointment(name, mail_id, contact, date);
                 appointmentAdapter.add(appointment);
                 count++;
 
@@ -61,6 +62,7 @@ public class AppointmentScreen extends AppCompatActivity {
                 intent.putExtra("Name", entry.getName());
                 intent.putExtra("Mail_Id", entry.getMail_id());
                 intent.putExtra("Contact", entry.getContact());
+                intent.putExtra("Date",entry.getDate());
                 startActivity(intent);
 
             }

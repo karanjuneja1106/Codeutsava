@@ -1,7 +1,6 @@
 package org.nullpointer.doctor;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,12 +19,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import static android.R.attr.password;
-
 public class SetAppointmentTime extends AppCompatActivity {
     TimePicker timePicker;
     Bundle detailsImported;
-    String Name, Mail_Id, Contact;
+    String Name, Mail_Id, Contact, Date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +34,14 @@ public class SetAppointmentTime extends AppCompatActivity {
         Name = detailsImported.getString("Name");
         Mail_Id = detailsImported.getString("Mail_Id");
         Contact = detailsImported.getString("Contact");
+        Date = detailsImported.getString("Date");
     }
 
     public void setTime(View v){
         String appointmentTime=""+timePicker.getHour()+" : "+timePicker.getMinute();
 
         BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(Name, Contact, appointmentTime);
+        backgroundTask.execute(Name, Contact, appointmentTime, Date);
     }
 
     public class BackgroundTask extends AsyncTask<String, Void, String> {
@@ -64,6 +62,7 @@ public class SetAppointmentTime extends AppCompatActivity {
             String STRING_NAME = params[0];
             String STRING_CONTACT = params[1];
             String STRING_TIME = params[2];
+            String STRING_DATE = params[3];
 
             try {
                 URL url = new URL(sendSMSURL);
@@ -76,7 +75,8 @@ public class SetAppointmentTime extends AppCompatActivity {
 
                 String data = URLEncoder.encode("STRING_NAME", "UTF-8") + "=" + URLEncoder.encode(STRING_NAME, "UTF-8") + "&" +
                         URLEncoder.encode("STRING_CONTACT", "UTF-8") + "=" + URLEncoder.encode(STRING_CONTACT, "UTF-8") + "&" +
-                        URLEncoder.encode("STRING_TIME", "UTF-8") + "=" + URLEncoder.encode(STRING_TIME, "UTF-8");
+                        URLEncoder.encode("STRING_TIME", "UTF-8") + "=" + URLEncoder.encode(STRING_TIME, "UTF-8")+ "&" +
+                        URLEncoder.encode("STRING_DATE", "UTF-8") + "=" + URLEncoder.encode(STRING_DATE, "UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
