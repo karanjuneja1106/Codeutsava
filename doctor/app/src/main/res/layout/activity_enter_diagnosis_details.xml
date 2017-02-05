@@ -3,22 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="org.nullpointer.doctor.enterDiagnosisDetails">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="DIAGNOSTIC DETAILS"
-        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="15dp"
-        android:layout_gravity="center_horizontal" />
-
+        android:text="DIAGNOSTIC DETAILS"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <android.support.design.widget.TextInputEditText
             android:id="@+id/enterSymptoms"
             android:layout_width="match_parent"
@@ -26,6 +28,11 @@
             android:ems="10"
             android:hint="Symptoms"
             android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/enterMedicalTest"
@@ -34,6 +41,11 @@
             android:ems="10"
             android:hint="Medical Test"
             android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/enterMedicinesPrescribed"
@@ -42,14 +54,15 @@
             android:ems="10"
             android:hint="Medicines Prescribed"
             android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/submitDiagnosisDetails"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/submitDiagnosisDetails"
+        android:layout_gravity="center_horizontal"
         android:onClick="submitDiagnosisDetails"
-        style="@style/ButtonStyle"
-        android:layout_gravity="center_horizontal" />
+        android:text="Submit" />
 
 </LinearLayout>

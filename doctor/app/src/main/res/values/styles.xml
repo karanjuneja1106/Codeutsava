@@ -9,6 +9,7 @@
     </style>
 
     <style name="ButtonStyle" >
+        <item name="android:background">#d6d7de</item>
         <item name="android:textColor">#d81b60</item>
         <item name="android:textStyle" >bold</item>
     </style>
